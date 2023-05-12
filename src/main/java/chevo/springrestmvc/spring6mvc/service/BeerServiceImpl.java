@@ -2,16 +2,17 @@ package chevo.springrestmvc.spring6mvc.service;
 
 import chevo.springrestmvc.spring6mvc.model.Beer;
 import chevo.springrestmvc.spring6mvc.model.BeerStyle;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Slf4j
 @Service
 public class BeerServiceImpl implements BeerService {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BeerServiceImpl.class);
+
     @Override
     public Beer getBeerById(UUID id) {
 
