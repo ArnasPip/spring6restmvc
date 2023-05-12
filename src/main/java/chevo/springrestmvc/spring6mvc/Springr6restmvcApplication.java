@@ -1,4 +1,4 @@
-package chevo.springrestmv.spring6mvc;
+package chevo.springrestmvc.spring6mvc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

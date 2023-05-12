@@ -1,15 +1,22 @@
-package chevo.springrestmv.spring6mvc.service;
+package chevo.springrestmvc.spring6mvc.service;
 
-import chevo.springrestmv.spring6mvc.model.Beer;
-import chevo.springrestmv.spring6mvc.model.BeerStyle;
+import chevo.springrestmvc.spring6mvc.model.Beer;
+import chevo.springrestmvc.spring6mvc.model.BeerStyle;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Slf4j
+@Service
 public class BeerServiceImpl implements BeerService {
     @Override
     public Beer getBeerById(UUID id) {
+
+        log.debug("Get beer id in service was called");
+
         return Beer.builder()
                 .id(id)
                 .version(1)

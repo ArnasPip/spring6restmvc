@@ -1,4 +1,4 @@
-package chevo.springrestmv.spring6mvc.model;
+package chevo.springrestmvc.spring6mvc.model;
 
 import lombok.Builder;
 import lombok.Data;
