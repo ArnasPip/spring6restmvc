@@ -3,7 +3,6 @@ package chevo.springrestmvc.spring6mvc.controller;
 import chevo.springrestmvc.spring6mvc.model.Beer;
 import chevo.springrestmvc.spring6mvc.service.BeerService;
 import chevo.springrestmvc.spring6mvc.service.BeerServiceImpl;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @WebMvcTest(BeerController.class)
@@ -130,10 +130,19 @@ class BeerControllerTest {
     }
 
     @Test
+    void getBeerByIdNotFound() throws Exception {
+
+        given(beerService.getBeerById(any(UUID.class))).willReturn(Optional.empty());
+
+        mockMvc.perform(get(BeerController.BEER_PATH_ID,UUID.randomUUID()))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void getBeerById() throws Exception {
         Beer testBeer = beerServiceImpl.listBeers().get(0);
 
-        given(beerService.getBeerById(testBeer.getId())).willReturn(testBeer);
+        given(beerService.getBeerById(testBeer.getId())).willReturn(Optional.of(testBeer));
 
         mockMvc.perform(get(BeerController.BEER_PATH_ID,testBeer.getId())
                 .accept(MediaType.APPLICATION_JSON))
