@@ -1,5 +1,5 @@
 
-    drop table beer cascade constraints;
+--    drop table beer cascade constraints;
 
     create table beer (
        id varchar(36) not null,
