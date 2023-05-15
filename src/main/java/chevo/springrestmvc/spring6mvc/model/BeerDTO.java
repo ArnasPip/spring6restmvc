@@ -1,21 +1,36 @@
 package chevo.springrestmvc.spring6mvc.model;
 
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class Beer {
+public class BeerDTO {
     private UUID id;
     private Integer version;
+
+    @NotBlank
+    @NotNull
+    @Size(max = 50)
+    @Column(length = 50)
     private String beerName;
+    @NotNull
     private BeerStyle beerStyle;
+    @NotBlank
+    @NotNull
+    @Size(max = 255)
     private String upc;
     private Integer quantityOnHand;
+    @NotNull
     private BigDecimal price;
     private LocalDateTime createdDate;
     private LocalDateTime updateDate;
 
-    Beer(UUID id, Integer version, String beerName, BeerStyle beerStyle, String upc, Integer quantityOnHand, BigDecimal price, LocalDateTime createdDate, LocalDateTime updateDate) {
+    BeerDTO(UUID id, Integer version, String beerName, BeerStyle beerStyle, String upc, Integer quantityOnHand, BigDecimal price, LocalDateTime createdDate, LocalDateTime updateDate) {
         this.id = id;
         this.version = version;
         this.beerName = beerName;
@@ -105,8 +120,8 @@ public class Beer {
 
     public boolean equals(final Object o) {
         if (o == this) return true;
-        if (!(o instanceof Beer)) return false;
-        final Beer other = (Beer) o;
+        if (!(o instanceof BeerDTO)) return false;
+        final BeerDTO other = (BeerDTO) o;
         if (!other.canEqual((Object) this)) return false;
         final Object this$id = this.getId();
         final Object other$id = other.getId();
@@ -142,7 +157,7 @@ public class Beer {
     }
 
     protected boolean canEqual(final Object other) {
-        return other instanceof Beer;
+        return other instanceof BeerDTO;
     }
 
     public int hashCode() {
@@ -232,8 +247,8 @@ public class Beer {
             return this;
         }
 
-        public Beer build() {
-            return new Beer(this.id, this.version, this.beerName, this.beerStyle, this.upc, this.quantityOnHand, this.price, this.createdDate, this.updateDate);
+        public BeerDTO build() {
+            return new BeerDTO(this.id, this.version, this.beerName, this.beerStyle, this.upc, this.quantityOnHand, this.price, this.createdDate, this.updateDate);
         }
 
         public String toString() {
