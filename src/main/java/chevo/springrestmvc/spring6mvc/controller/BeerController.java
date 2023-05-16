@@ -1,6 +1,7 @@
 package chevo.springrestmvc.spring6mvc.controller;
 
 import chevo.springrestmvc.spring6mvc.model.BeerDTO;
+import chevo.springrestmvc.spring6mvc.model.BeerStyle;
 import chevo.springrestmvc.spring6mvc.service.BeerService;
 import org.slf4j.Logger;
 import org.springframework.http.HttpHeaders;
@@ -63,8 +64,10 @@ public class BeerController {
     }
 
     @GetMapping(value = BEER_PATH)
-    public List<BeerDTO> listBeers(){
-        return beerService.listBeers();
+    public List<BeerDTO> listBeers(@RequestParam(required = false) String beerName,
+                                   @RequestParam(required = false) BeerStyle beerStyle,
+                                   @RequestParam(required = false) Boolean showInventory){
+        return beerService.listBeers(beerName,beerStyle, showInventory);
     }
 
     @GetMapping(value = BEER_PATH_ID)
